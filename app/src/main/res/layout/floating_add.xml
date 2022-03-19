@@ -2,18 +2,12 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center">
-
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingTop="10dp"
-        android:paddingRight="15dp"
-        android:paddingBottom="10dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -21,25 +15,28 @@
 
 
         <ImageView
-            android:id="@+id/play"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_weight="1"
-            android:src="@drawable/play" />
-
-        <ImageView
             android:id="@+id/move"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_weight="1"
+            android:contentDescription="@string/move_description"
             android:src="@drawable/move" />
 
         <ImageView
-            android:id="@+id/add"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:id="@+id/play"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_weight="1"
-            android:src="@drawable/add" />
+            android:contentDescription="@string/play_description"
+            android:src="@drawable/play" />
+
+        <ImageView
+            android:id="@+id/add"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:src="@drawable/add"
+            android:visibility="gone" />
 
 
     </LinearLayout>
