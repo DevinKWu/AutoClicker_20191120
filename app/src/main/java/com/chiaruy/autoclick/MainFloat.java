@@ -34,7 +34,7 @@ public class MainFloat extends FrameLayout {
     private String TAG = "MainFloat";
     private Context mContext;
     private View mView_add;
-    private WindowManager mWindowManager, mEditWindowManager;
+    private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWindowParams_add;
     private int SizeX, SizeY;
     private ImageView mImage_play;
@@ -52,44 +52,38 @@ public class MainFloat extends FrameLayout {
         mImage_play.setOnClickListener(mImagePlay_OnClickListener);
 
         mWindowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-        mEditWindowManager = (WindowManager)
-                mContext.getApplicationContext().getSystemService(Context.WINDOW_SERVICE);
         Display display = mWindowManager.getDefaultDisplay();
         Point point = new Point();
         display.getSize(point);
         SizeX = point.x;
         SizeY = point.y;
-        mWindowParams_add = show(mView_add, Gravity.START, 0, 0);
-    }
 
-    public WindowManager.LayoutParams show(View mView, int gravity, int x, int y) {
-        WindowManager.LayoutParams mWindowParams = new WindowManager.LayoutParams();
-        mWindowParams.gravity = gravity;
-        mWindowParams.x = x;
-        mWindowParams.y = y;
-        mWindowParams.format = PixelFormat.RGBA_8888;
-        mWindowParams.flags =
+        mWindowParams_add = new WindowManager.LayoutParams();
+        mWindowParams_add.gravity = Gravity.START;
+        mWindowParams_add.x = 0;
+        mWindowParams_add.y = 0;
+        mWindowParams_add.format = PixelFormat.RGBA_8888;
+        mWindowParams_add.flags =
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
                         WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
                         WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN |
                         WindowManager.LayoutParams.FLAG_LAYOUT_INSET_DECOR |
                         WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
-        mWindowParams.width = LayoutParams.WRAP_CONTENT;
-        mWindowParams.height = LayoutParams.WRAP_CONTENT;
+        mWindowParams_add.width = LayoutParams.WRAP_CONTENT;
+        mWindowParams_add.height = LayoutParams.WRAP_CONTENT;
         if (Build.VERSION.SDK_INT >= 26) {
-            mWindowParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+            mWindowParams_add.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
         } else {
-            mWindowParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+            mWindowParams_add.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
         }
 
         try {
-            Log.i(TAG, "show: try addView");
-            mWindowManager.addView(mView, mWindowParams);
+            mWindowManager.addView(mView_add, mWindowParams_add);
         } catch (Exception e) {
-            Log.d(TAG+"@show Exception", "addView");
+            Log.d(TAG+" Exception", "addView");
             e.printStackTrace();
         }
-        return mWindowParams;
+
     }
 
     private OnTouchListener mViewAdd_OnTouchListener = new View.OnTouchListener() {
