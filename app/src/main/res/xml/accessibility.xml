@@ -3,4 +3,5 @@
     android:accessibilityEventTypes="typeAllMask"
     android:accessibilityFeedbackType="feedbackAllMask"
     android:canRetrieveWindowContent="true"
-    android:canPerformGestures="true"/>
+    android:canPerformGestures="true"
+    android:description="@string/accessibility_service_description"/>
